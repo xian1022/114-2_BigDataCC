@@ -1,3 +1,6 @@
+姓名：何品賢
+學號：C112181113
+
 ## 任務 1
 student116@linux-server1:~/week04$ grep student116 /etc/passwd
 student116:x:1015:1015::/home/student116:/bin/bash
