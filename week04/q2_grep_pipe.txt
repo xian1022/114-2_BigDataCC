@@ -1,11 +1,11 @@
 姓名：何品賢
 學號：C112181113
 
-## 任務 1
-student116@linux-server1:~/week04$ grep student116 /etc/passwd
+=== 任務 1：grep 搜尋 ===
+student116@linux-server1:~$ grep student116 /etc/passwd
 student116:x:1015:1015::/home/student116:/bin/bash
 
-student116@linux-server1:~/week04$ grep bash /etc/passwd
+student116@linux-server1:~$ grep bash /etc/passwd
 root:x:0:0:root:/root:/bin/bash
 student101:x:1000:1000::/home/student101:/bin/bash
 student102:x:1001:1001::/home/student102:/bin/bash
@@ -70,11 +70,11 @@ student228:x:1059:1059::/home/student228:/bin/bash
 student229:x:1060:1060::/home/student229:/bin/bash
 student230:x:1061:1061::/home/student230:/bin/bash
 
-## 任務 2：
-student116@linux-server1:~/week04$ ls /etc | wc -l
+=== 任務 2：管線操作 ===
+student116@linux-server1:~$ ls /etc | wc -l
 101
 
-student116@linux-server1:~/week04$ ls /etc | sort | head -10
+student116@linux-server1:~$ ls /etc | sort | head -10
 adduser.conf
 alternatives
 apparmor.d
@@ -86,9 +86,9 @@ cloud
 cron.d
 cron.daily
 
-## 任務 3：
-student116@linux-server1:~/week04$ ls -la ~ > ~/week04/home_list.txt
-cat ~/week04/home_list.txt
+=== 任務 3：重導向 ===
+student116@linux-server1:~$ ls -la ~ > ~/week04/home_list.txt
+student116@linux-server1:~$ cat ~/week04/home_list.txt
 total 740
 drwxr-x---. 9 student116 student116  16384 Mar 17 07:04 .
 drwxr-xr-x. 1 root       root        16384 Mar 10 03:13 ..
@@ -109,6 +109,8 @@ drwxrwxr-x. 2 student116 student116      6 Mar  9 06:50 projects
 drwxrwxr-x. 2 student116 student116      6 Mar  9 06:50 scripts
 drwxrwxr-x. 4 student116 student116     51 Mar 17 07:21 week04
 
-student116@linux-server1:~/week04$ date >> ~/week04/home_list.txt
-tail -3 ~/week04/home_list.txt
+student116@linux-server1:~$ date >> ~/week04/home_list.txt
+student116@linux-server1:~$ tail -3 ~/week04/home_list.txt
+drwxrwxr-x. 2 student116 student116      6 Mar  9 06:50 scripts
+drwxrwxr-x. 4 student116 student116     51 Mar 17 07:21 week04
 Tue Mar 17 07:22:34 UTC 2026
