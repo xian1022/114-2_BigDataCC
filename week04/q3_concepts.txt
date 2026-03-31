@@ -24,7 +24,6 @@ cat /etc/passwd > users.txt
 date >> log.txt
 
 A3：
-
 grep /bin/bash /etc/passwd | wc -l
 
 這行指令的意思是：
