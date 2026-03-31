@@ -52,7 +52,7 @@ u306@U6:/mnt/c/Windows/system32$ cat /mnt/c/Users/Teacher/Desktop/wsl_hello.txt
 我的學號是 C112181113，這個檔案從 WSL 建立
 
 步驟 3：從 WSL 打開 Windows 檔案總管查看家目錄
-week06\image.png
+![image](image.png)
 
 步驟 4：清理 — 刪除桌面上的測試檔案
 u306@U6:/mnt/c/Windows/system32$ rm /mnt/c/Users/Teacher/Desktop/wsl_hello.txt
