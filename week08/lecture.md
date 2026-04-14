@@ -2,12 +2,114 @@
 
 ## 本週學習目標
 
-1. 在 WSL 上安裝並啟動 MySQL
-2. 建立資料庫與資料表（CREATE DATABASE / TABLE）
-3. 新增、查詢、修改、刪除資料（INSERT / SELECT / UPDATE / DELETE）
-4. 使用條件篩選與排序（WHERE / ORDER BY / LIMIT）
-5. 使用統計函數與分組（GROUP BY / COUNT / AVG / SUM）
-6. 認識多表查詢（LEFT JOIN）
+1. 使用 VS Code 連線 WSL 進行開發操作
+2. 在 WSL 上安裝並啟動 MySQL
+3. 建立資料庫與資料表（CREATE DATABASE / TABLE）
+4. 新增、查詢、修改、刪除資料（INSERT / SELECT / UPDATE / DELETE）
+5. 使用條件篩選與排序（WHERE / ORDER BY / LIMIT）
+6. 使用統計函數與分組（GROUP BY / COUNT / AVG / SUM）
+7. 認識多表查詢（LEFT JOIN）
+
+---
+
+## 前置：使用 VS Code 操作 WSL 與 MySQL
+
+> 本週所有操作都在 VS Code 中完成，不需要額外開終端機視窗。
+
+### 為什麼用 VS Code？
+
+| 方式 | 優點 | 缺點 |
+|------|------|------|
+| Windows CMD / PowerShell | 不用額外安裝 | 無法直接執行 Linux 指令 |
+| WSL 終端機 | 原生 Linux 環境 | 獨立視窗，切換不方便 |
+| **VS Code + WSL 擴充** | **整合編輯器 + 終端機，一個視窗搞定** | 需安裝擴充套件 |
+
+### Step 1：安裝 WSL 擴充套件
+
+1. 開啟 VS Code
+2. 點左側的「擴充功能」圖示（四個方塊的圖示），或按 `Ctrl + Shift + X`
+3. 搜尋 **WSL**（發行者：Microsoft）
+4. 點「安裝」
+
+### Step 2：從 VS Code 連線到 WSL
+
+**方法 A：從 VS Code 開啟 WSL**
+1. 按 `Ctrl + Shift + P` 開啟命令面板
+2. 輸入 `WSL: Connect to WSL`
+3. VS Code 會重新載入，左下角會顯示 `WSL: Ubuntu`
+
+**方法 B：從 WSL 開啟 VS Code**
+1. 開啟 WSL 終端機
+2. 進入你想要的目錄，例如 `cd ~`
+3. 輸入 `code .`
+4. VS Code 會自動開啟並連線到 WSL
+
+### Step 3：在 VS Code 中開啟終端機
+
+1. 連線到 WSL 後，按 `` Ctrl + ` ``（反引號）開啟終端機
+2. 終端機會顯示 Linux 的 bash 提示符號（例如 `user@hostname:~$`）
+3. 在這裡可以直接執行所有 Linux 指令和 MySQL 指令
+
+```
+┌─────────────────────────────────────────────┐
+│  VS Code                                     │
+│  ┌───────────────────────────────────────┐   │
+│  │  編輯區                                │   │
+│  │  （可以同時開 .sql 檔案編輯 SQL 語句） │   │
+│  │                                       │   │
+│  ├───────────────────────────────────────┤   │
+│  │  終端機（WSL Ubuntu）                  │   │
+│  │  $ sudo service mysql start           │   │
+│  │  $ mysql -u root -p                   │   │
+│  │  mysql> SELECT * FROM ships;          │   │
+│  └───────────────────────────────────────┘   │
+│  左下角顯示：WSL: Ubuntu                     │
+└─────────────────────────────────────────────┘
+```
+
+### Step 4：用 VS Code 編輯 SQL 檔案（進階技巧）
+
+除了在終端機一行行輸入 SQL，你也可以把 SQL 語句寫成檔案：
+
+1. 在 VS Code 建立新檔案 `week08.sql`
+2. 寫好 SQL 語句：
+
+```sql
+-- week08.sql
+CREATE DATABASE IF NOT EXISTS port_db;
+USE port_db;
+
+CREATE TABLE ships (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    ship_name VARCHAR(100) NOT NULL,
+    ship_type VARCHAR(50),
+    tonnage INT,
+    arrival_date DATE
+);
+
+INSERT INTO ships (ship_name, ship_type, tonnage, arrival_date) VALUES
+('Ever Given', 'Container', 220940, '2026-04-10'),
+('Yang Ming Wish', 'Container', 150000, '2026-04-11');
+```
+
+3. 在終端機中執行整個檔案：
+
+```bash
+mysql -u root -p < week08.sql
+```
+
+> 好處：SQL 語句可以保存、修改、重複使用，不用每次重新輸入。
+
+### 常見問題
+
+**Q：左下角沒有顯示 WSL: Ubuntu？**
+確認已安裝 WSL 擴充套件，並且用 `Ctrl + Shift + P` → `WSL: Connect to WSL` 連線。
+
+**Q：終端機顯示的是 PowerShell 而非 bash？**
+點終端機右上角的下拉選單（`+` 旁邊的 `∨`），選擇 `Ubuntu (WSL)` 或 `bash`。
+
+**Q：`code .` 指令在 WSL 中無法使用？**
+首次使用時，VS Code 會自動在 WSL 中安裝 VS Code Server。如果失敗，確認你的 VS Code 是最新版本，並且已安裝 WSL 擴充套件。
 
 ---
 
